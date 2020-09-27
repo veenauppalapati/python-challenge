@@ -11,11 +11,13 @@
 # |      |__ Resources
 # |      |   |__ budget_data.csv
 # |      |__ analysis
+# |          |__ results.txt
 # |__ PyPoll
 #        |__ main.py
 #        |__ Resources
 #        |   |__ election_data.csv
 #        |__ analysis
+#            |__ results.txt
 
 # ################################################################################################
 
@@ -29,6 +31,7 @@
 # ----------------
 # OUTPUT FILES
 # ----------------
+# results.txt
 
 # ----------------
 # MASTER FILES
@@ -48,6 +51,7 @@
 # ----------------
 # OUTPUT FILES
 # ----------------
+# results.txt
 
 # ----------------
 # MASTER FILES
