@@ -1,16 +1,3 @@
-# CALCULATING TOTAL NUMBER OF ROWS FUNCTION
-
-def calc_total_rows(file_contents):
-
-    total_dates = 0
-
-    #Read each each row of data after the header
-    for row in file_contents:
-        total_dates = total_dates + 1
-        
-    print (f"Total number of dates : {total_dates}")
-
-
 # READING CSV FILE AND ANALYZING THE DATA
 
 def main():
@@ -36,7 +23,26 @@ def main():
         print(f"CSV Header: {csv_header}")
 
         # calculate total number of dates
-        calc_total_rows(csv_reader)
+        total_dates = 0
+        total_sum = 0
+
+        #Read each each row of data after the header
+        for row in csv_reader:
+
+            # calcululate total number of dates
+            total_dates = total_dates + 1
+         
+            # Retrieve the values from profits/losses
+            profit_losses = int(row[1])
+
+            # calculate net amount of profit/losses by accumulating the sum
+            total_sum = total_sum + profit_losses
+        
+        # Display the output
+        print (f"Total number of dates : {total_dates}")
+        print(f"Total net amount: {total_sum}")
+  
+        
 
 
 main()
