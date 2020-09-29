@@ -68,26 +68,30 @@ def main():
 
         
         average = (sum(change_profit_losses_list) / len(change_profit_losses_list))
-
         print(round(average, 2))
+
+        #Calculate greatest increase
         greatest_increase = max(change_profit_losses_list)
         greatest_increase_index = change_profit_losses_list.index(greatest_increase)
         greatest_increase_date = budget_data_list[greatest_increase_index][0]
         print(greatest_increase_date)
 
-        print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})")
-        print(min(change_profit_losses_list))
+         #Calculate greatest decrease
+        greatest_decrease = min(change_profit_losses_list)
+        greatest_decrease_index = change_profit_losses_list.index(greatest_decrease)
+        greatest_decrease_date = budget_data_list[greatest_decrease_index][0]
+        print(greatest_decrease_date)
 
-
-                
-    
-        
         # Display the output
+        print('-'*35)
+        print("Financial Analysis")
+        print('-'*35)
         print (f"Total number of dates : {total_dates}")
         print(f"Total net amount: {total_sum}")
+        print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})")
+        print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})")
   
         
-
 
 main()
 
