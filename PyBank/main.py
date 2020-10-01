@@ -5,7 +5,22 @@ import os
 # import the csv module for reading CSV files
 import csv
 
-import statistics
+def write_to_file(results_list):
+
+    # Define the output csv file
+    output_results_file = os.path.join("analysis", "results.txt")
+
+    #write to the file
+    with open(output_results_file, 'w') as results_file:
+
+        results_file.writelines('-'*35 + '\n')
+        results_file.writelines('Financial Analysis\n')
+        results_file.writelines('-'*35 + '\n')
+        
+        for output in results_list:
+
+            results_file.writelines(output)
+            results_file.write("\n")
 
 
 def calc_avg(divident, divisor):
@@ -39,10 +54,10 @@ def main():
         previousProfit_Losses = 0
         change_profit_losses_list = [] #will contain the difference between each month profit/loss
         total_change_profit_loss = 0
-        greatest_increase_data = []
         average = 0.00
         mean_change = 0
         counter = 0
+        
 
 
         #Read each each row of data after the header
@@ -104,6 +119,17 @@ def main():
         print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})")
         print('\n')
         print('#' * 100)
+
+        # Write to file
+        results =  [
+                            [f"Total number of dates : {total_dates}"], 
+                            [f"Total net amount: ${total_sum}"],
+                            [f"Average  Change: ${average_change}"],
+                            [f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})"],
+                            [f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})"],
+
+                        ] 
+        write_to_file(results)
 
 main()
 
