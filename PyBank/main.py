@@ -16,7 +16,7 @@ def write_to_file(results_list):
         results_file.writelines('-'*35 + '\n')
         results_file.writelines('Financial Analysis\n')
         results_file.writelines('-'*35 + '\n')
-        
+
         for output in results_list:
 
             results_file.writelines(output)
@@ -122,13 +122,13 @@ def main():
 
         # Write to file
         results =  [
-                            [f"Total number of dates : {total_dates}"], 
-                            [f"Total net amount: ${total_sum}"],
-                            [f"Average  Change: ${average_change}"],
-                            [f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})"],
-                            [f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})"],
+                        [f"Total number of dates : {total_dates}"], 
+                        [f"Total net amount: ${total_sum}"],
+                        [f"Average  Change: ${average_change}"],
+                        [f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})"],
+                        [f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})"],
 
-                        ] 
+                    ] 
         write_to_file(results)
 
 main()
