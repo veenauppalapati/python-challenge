@@ -82,14 +82,43 @@ def calculate_votes_percentage(input_dict, total):
 
     return input_dict
 
+# --------------------------------------------------------------------------------
+
+def determine_winner(input_dict):
+
+    votes_list = []
+
+    # List out the keys separately
+    candidates_list = list(input_dict.keys()) 
+    print(candidates_list)
+
+    # List out the values separately
+    items = input_dict.values()
+
+    for item in items:
+        votes_list.append(item[0])
+
+    # Determine the max value
+    winner_votes = max(votes_list)
+    print(winner_votes)
+
+    # Retrieve the key of the max value
+    winner = candidates_list[votes_list.index(winner_votes)]
+    
+    
+    return winner
+
+ # --------------------------------------------------------------------------------   
+   
+
+
 # Define the main function       
 
 def main():
 
     election_data_list = []
     total_votes = 0
-    
-    
+     
     
     # Call read_input_file function: Read the election_data.csv file and push the data into a list
     read_input_file(election_data_list)
@@ -103,10 +132,16 @@ def main():
 
     # Calculate total votes for each candidate
     votes_dict = calculate_candidates_votes(election_data_list)
-    print(votes_dict)
+   
 
+    # Calculate the percentage of votes each candidate won
     candidate_dict = calculate_votes_percentage(votes_dict, total_votes)
-    print(candidate_dict)
+   
+
+    # The winner of the election based on popular vote
+    winner = determine_winner(candidate_dict)
+
+    
 
 # --------------------------------------------------------------------------------
 main()
