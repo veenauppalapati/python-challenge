@@ -125,15 +125,47 @@ def print_output(input_dict, input_winner, input_total_votes):
     print('-'*35)
     print('\n'+'#' * 100 )
 
- # --------------------------------------------------------------------------------   
+ # --------------------------------------------------------------------------------
+
+def write_to_file(input_dict, input_winner, input_total_votes):
+
+    # Define the output csv file
+    output_results_file = os.path.join("analysis", "results.txt")
+
+    #write to the file
+    with open(output_results_file, 'w') as results_file:
+
+        #title
+
+        formatted_title = ''
+   
+        title = "Election Results"
+        for letter in title:
+            formatted_title = formatted_title + (letter + ' ')
+        results_file.writelines(f"\n{formatted_title.upper()}\n")
+
+        # Total votes
+        results_file.writelines('-'*35 + '\n')
+        results_file.writelines(f"Total Votes: {input_total_votes}\n")
+        results_file.writelines('-'*35 + '\n')
+
+        # candidates votes and percentage
+        for key, val in input_dict.items():
+            votes = val[0]
+            vote_percentage = val[1]
+            results_file.writelines(f"{key}: {vote_percentage}% ({votes})\n")
+
+        #winner
+        results_file.writelines('-'*35 + '\n')
+        results_file.writelines(f"Winner: {input_winner}\n")
+        results_file.writelines('-'*35 + '\n')
 
 # Define the main function       
 
 def main():
 
     election_data_list = []
-    total_votes = 0
-     
+    total_votes = 0     
     
     # Call read_input_file function: Read the election_data.csv file and push the data into a list
     read_input_file(election_data_list)
@@ -141,20 +173,20 @@ def main():
     #calculate the total number of votes cast
     total_votes = len(election_data_list)
 
-
     # Calculate total votes for each candidate
-    votes_dict = calculate_candidates_votes(election_data_list)
-   
+    votes_dict = calculate_candidates_votes(election_data_list)   
 
     # Calculate the percentage of votes each candidate won
     candidate_dict = calculate_votes_percentage(votes_dict, total_votes)
    
-
     # The winner of the election based on popular vote
     winner = determine_winner(candidate_dict)
 
     # Display the output
     print_output(candidate_dict, winner, total_votes)
+
+    # Write to file
+    write_to_file(candidate_dict, winner, total_votes)
 
 # --------------------------------------------------------------------------------
 main()
