@@ -47,13 +47,40 @@ def calculate_candidates_votes(input_list):
         elif candidate == "O'Tooley":
             candidate_four_count = candidate_four_count + 1
 
+
+    # create a dictionary
+    candidate_votes_dict = {"Correy": [candidate_one_count],
+                        "Khan": [candidate_two_count], 
+                        "Li": [candidate_three_count],
+                        "O'Tooley": [candidate_four_count]}         
+    
+
     print(f"Correy : {candidate_one_count}")
     print(f"Khan : {candidate_two_count}")
     print(f"Li : {candidate_three_count}")
     print(f"O'Tooley : {candidate_four_count}")
+
+    return candidate_votes_dict
         
 
 # --------------------------------------------------------------------------------
+
+def calculate_votes_percentage(input_dict, total):
+
+
+    #For each key in the dictionary 
+    for key, val in input_dict.items():
+        
+        # Calculate and round the percentage
+        percentage = round(((val[0] / total) * 100), 2)
+        
+        #push the percentage value to the candidate's value list
+        val.append(percentage)
+
+        # Set the percentage value for each candidate
+        input_dict[key] = val
+
+    return input_dict
 
 # Define the main function       
 
@@ -61,6 +88,7 @@ def main():
 
     election_data_list = []
     total_votes = 0
+    
     
     
     # Call read_input_file function: Read the election_data.csv file and push the data into a list
@@ -74,7 +102,11 @@ def main():
     print(f"Total Votes: {total_votes}")
 
     # Calculate total votes for each candidate
-    calculate_candidates_votes(election_data_list)
+    votes_dict = calculate_candidates_votes(election_data_list)
+    print(votes_dict)
+
+    candidate_dict = calculate_votes_percentage(votes_dict, total_votes)
+    print(candidate_dict)
 
 # --------------------------------------------------------------------------------
 main()
