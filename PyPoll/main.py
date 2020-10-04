@@ -55,10 +55,6 @@ def calculate_candidates_votes(input_list):
                         "O'Tooley": [candidate_four_count]}         
     
 
-    print(f"Correy : {candidate_one_count}")
-    print(f"Khan : {candidate_two_count}")
-    print(f"Li : {candidate_three_count}")
-    print(f"O'Tooley : {candidate_four_count}")
 
     return candidate_votes_dict
         
@@ -109,8 +105,27 @@ def determine_winner(input_dict):
     return winner
 
  # --------------------------------------------------------------------------------   
-   
 
+def print_output(input_dict, input_winner, input_total_votes):
+    formatted_title = ''
+    print('#' * 100 + '\n')
+    title = "Election Results"
+    for letter in title:
+        formatted_title = formatted_title + (letter + ' ')
+    print (formatted_title.upper())
+    print('-'*35)
+    print(f"Total Votes: {input_total_votes}")
+    print('-'*35)
+    for key, val in input_dict.items():
+        votes = val[0]
+        vote_percentage = val[1]
+        print(f"{key}: {vote_percentage}% ({votes})") 
+    print('-'*35) 
+    print(f"Winner: {input_winner}")
+    print('-'*35)
+    print('\n'+'#' * 100 )
+
+ # --------------------------------------------------------------------------------   
 
 # Define the main function       
 
@@ -127,9 +142,6 @@ def main():
     total_votes = len(election_data_list)
 
 
-    # Display the output
-    print(f"Total Votes: {total_votes}")
-
     # Calculate total votes for each candidate
     votes_dict = calculate_candidates_votes(election_data_list)
    
@@ -141,7 +153,8 @@ def main():
     # The winner of the election based on popular vote
     winner = determine_winner(candidate_dict)
 
-    
+    # Display the output
+    print_output(candidate_dict, winner, total_votes)
 
 # --------------------------------------------------------------------------------
 main()
